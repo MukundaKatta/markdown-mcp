@@ -1,0 +1,59 @@
+{
+  "name": "@mukundakatta/markdown-mcp",
+  "version": "0.1.0",
+  "mcpName": "io.github.MukundaKatta/markdown",
+  "description": "MCP server: convert Markdown to HTML with frontmatter and inline-formula support.",
+  "type": "module",
+  "bin": {
+    "mcp-markdown": "dist/server.js"
+  },
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "test": "node --test --import tsx test/*.test.ts",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "cursor",
+    "cline",
+    "windsurf",
+    "zed",
+    "markdown",
+    "html",
+    "frontmatter"
+  ],
+  "author": "Mukunda Katta <mukunda.vjcs6@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/MukundaKatta/markdown-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/MukundaKatta/markdown-mcp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MukundaKatta/markdown-mcp.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "marked": "^15.0.0",
+    "yaml": "^2.5.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}

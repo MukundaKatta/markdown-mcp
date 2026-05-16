@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.MukundaKatta/markdown",
+  "description": "MCP server: convert Markdown to HTML with frontmatter and inline-formula support.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/MukundaKatta/markdown-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/MukundaKatta/markdown-mcp",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@mukundakatta/markdown-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
