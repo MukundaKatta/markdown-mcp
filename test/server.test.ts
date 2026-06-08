@@ -41,3 +41,27 @@ test('handles malformed YAML gracefully', () => {
   // Body must round-trip cleanly.
   assert.ok(r.body === 'body' || r.meta === null);
 });
+
+test('parses CRLF-delimited frontmatter', () => {
+  const text = '---\r\ntitle: Hello\r\n---\r\nbody';
+  const r = extractFrontmatter(text);
+  assert.deepEqual(r.meta, { title: 'Hello' });
+  assert.equal(r.body, 'body');
+});
+
+test('handles frontmatter with no trailing newline after closing fence', () => {
+  const r = extractFrontmatter('---\ntitle: x\n---');
+  assert.deepEqual(r.meta, { title: 'x' });
+  assert.equal(r.body, '');
+});
+
+test('returns null meta when frontmatter is a scalar, not a mapping', () => {
+  const r = extractFrontmatter('---\njust a string\n---\nbody');
+  assert.equal(r.meta, null);
+  assert.equal(r.body, 'body');
+});
+
+test('renders task lists (GFM)', () => {
+  const out = toHtml('- [x] done\n- [ ] todo');
+  assert.match(out, /type="checkbox"/);
+});

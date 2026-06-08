@@ -76,11 +76,17 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   const { name, arguments: args } = req.params;
   try {
     if (name === 'to_html') {
-      const a = args as unknown as { markdown: string };
+      const a = (args ?? {}) as { markdown?: unknown };
+      if (typeof a.markdown !== 'string') {
+        return errorResult('to_html requires a string "markdown" argument');
+      }
       return textResult(toHtml(a.markdown));
     }
     if (name === 'extract_frontmatter') {
-      const a = args as unknown as { text: string };
+      const a = (args ?? {}) as { text?: unknown };
+      if (typeof a.text !== 'string') {
+        return errorResult('extract_frontmatter requires a string "text" argument');
+      }
       return jsonResult(extractFrontmatter(a.text));
     }
     return errorResult('unknown tool: ' + name);
